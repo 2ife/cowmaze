@@ -929,12 +929,13 @@ rankBtn.addEventListener("click", openRankModal);
 shopBtn.addEventListener("click", openShopModal);
 inquiryBtn.addEventListener("click", openInquiryModal);
 moveBtns.forEach((moveBtn, index) => {
+    console.log(moves[index])
     if (navigator.userAgent.match(/mobile/i) ||
         navigator.userAgent.match(/iPad|Android|Touch/i)) {
         moveBtn.addEventListener("touchstart", () => {
-            clickMoveBtn(moves[index]);
+            clickMoveBtn(moves[index])();
             clickInterval = setInterval(() => {
-                clickMoveBtn(moves[index]);
+                clickMoveBtn(moves[index])();
             }, 200);
         });
         moveBtn.addEventListener("touchend", () => {
@@ -952,9 +953,9 @@ moveBtns.forEach((moveBtn, index) => {
     }
     else {
         moveBtn.addEventListener("mousedown", () => {
-            clickMoveBtn(moves[index]);
+            clickMoveBtn(moves[index])();
             clickInterval = setInterval(() => {
-                clickMoveBtn(moves[index]);
+                clickMoveBtn(moves[index])();
             }, 200);
         });
         moveBtn.addEventListener("mouseup", () => {
