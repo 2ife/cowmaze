@@ -79,6 +79,7 @@ const upBtn = controllerPart.querySelector("#upBtn") as HTMLButtonElement;
 const leftBtn = controllerPart.querySelector("#leftBtn") as HTMLButtonElement;
 const rightBtn = controllerPart.querySelector("#rightBtn") as HTMLButtonElement;
 const downBtn = controllerPart.querySelector("#downBtn") as HTMLButtonElement;
+const moveBtns = [upBtn, downBtn, leftBtn, rightBtn];
 const saveBtn = controllerPart.querySelector("#saveBtn") as HTMLButtonElement;
 
 const outOfModals = document.querySelectorAll(
@@ -243,6 +244,13 @@ let myUserData: {
   depositDeadLine: 0,
   inviteNumbers: 0,
 };
+let clickInterval: any = null;
+let moves: ("up" | "down" | "left" | "right")[] = [
+  "up",
+  "down",
+  "left",
+  "right",
+];
 
 // common func
 const testLoginInfo = (category: "nick" | "id" | "password", text: string) => {
@@ -1154,11 +1162,50 @@ profileBtn.addEventListener("click", openProfileModal);
 rankBtn.addEventListener("click", openRankModal);
 shopBtn.addEventListener("click", openShopModal);
 inquiryBtn.addEventListener("click", openInquiryModal);
-
-upBtn.addEventListener("click", clickMoveBtn("up"));
-downBtn.addEventListener("click", clickMoveBtn("down"));
-leftBtn.addEventListener("click", clickMoveBtn("left"));
-rightBtn.addEventListener("click", clickMoveBtn("right"));
+moveBtns.forEach((moveBtn, index) => {
+  if (
+    navigator.userAgent.match(/mobile/i) ||
+    navigator.userAgent.match(/iPad|Android|Touch/i)
+  ) {
+    moveBtn.addEventListener("touchstart", () => {
+      clickMoveBtn(moves[index]);
+      clickInterval = setInterval(() => {
+        clickMoveBtn(moves[index]);
+      }, 200);
+    });
+    moveBtn.addEventListener("touchend", () => {
+      if (clickInterval) {
+        clearInterval(clickInterval);
+      }
+    });
+    moveBtn.addEventListener("touchmove", (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (
+        clickInterval &&
+        document.elementFromPoint(touch.pageX, touch.pageY) !== moveBtn
+      ) {
+        clearInterval(clickInterval);
+      }
+    });
+  } else {
+    moveBtn.addEventListener("mousedown", () => {
+      clickMoveBtn(moves[index]);
+      clickInterval = setInterval(() => {
+        clickMoveBtn(moves[index]);
+      }, 200);
+    });
+    moveBtn.addEventListener("mouseup", () => {
+      if (clickInterval) {
+        clearInterval(clickInterval);
+      }
+    });
+    moveBtn.addEventListener("mouseleave", () => {
+      if (clickInterval) {
+        clearInterval(clickInterval);
+      }
+    });
+  }
+});
 saveBtn.addEventListener("click", saveCurrentData);
 
 modalQuitBtns.forEach((modalQuitBtn, index) => {
@@ -1192,6 +1239,5 @@ window.addEventListener("keydown", () => {
     return location.reload();
   }
 });
-
 
 window.onload = checkLoginCode;
