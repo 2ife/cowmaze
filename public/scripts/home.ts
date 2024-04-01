@@ -1137,6 +1137,15 @@ const stopLoading = () => {
 };
 
 // event listeners
+// let lastTouch = 0;
+// document.addEventListener("touchend", (event: TouchEvent) => {
+//   const now = Date.now();
+//   if (now - lastTouch <= 300) {
+//     event.preventDefault();
+//   }
+//   lastTouch = now;
+// });
+
 loginBtn.addEventListener("click", login);
 joinBtn.addEventListener("click", join);
 
@@ -1183,17 +1192,6 @@ window.addEventListener("keydown", () => {
     return location.reload();
   }
 });
-let lastTouch = 0;
-document.addEventListener(
-  "touchend",
-  (event: TouchEvent) => {
-    const now = Date.now();
-    if (now - lastTouch <= 300) {
-      event.preventDefault();
-    }
-    lastTouch = now;
-  },
-  false
-);
+
 
 window.onload = checkLoginCode;

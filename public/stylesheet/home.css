@@ -3,6 +3,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  touch-action: manipulation;
 }
 
 body {
@@ -22,23 +23,21 @@ body::-webkit-scrollbar {
 
 #gameZone {
   position: fixed;
-  width: 48dvh;
-  height: 96dvh;
+  width: 50dvh;
+  height: 100dvh;
   background-color: white;
   font-size: 3dvh;
-  top: 2dvh;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 }
 
-@media screen and (max-width:48vh) {
+@media screen and (max-width:50vh) {
   #gameZone {
-    width: 96dvw;
-    height: 192dvw;
+    width: 100dvw;
+    height: 200dvw;
     font-size: 6dvw;
-    top: calc((100dvh - 192dvw)/2);
   }
 }
 
@@ -263,7 +262,7 @@ body::-webkit-scrollbar {
   align-items: center;
   font-size: 90%;
   font-weight: 900;
-  border-bottom: 2px black solid;
+  border-top: 2px black solid;
 }
 
 #controllerPart {
