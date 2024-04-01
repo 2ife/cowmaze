@@ -1,0 +1,285 @@
+input {
+  padding: 0;
+}
+
+body {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 1dvw;
+}
+
+#loginContainer {
+  position: absolute;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 40%;
+  height: 30%;
+  top: 35%;
+  left: 30%;
+  border: 2px black solid;
+  background-color: white;
+  z-index: 1;
+}
+
+.loginContainer_inputContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 90%;
+  height: 30%;
+}
+
+.loginContainer_inputContainer label {
+  width: 30%;
+  font-size: 120%;
+  font-weight: 700;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.loginContainer_inputContainer input {
+  width: 70%;
+  height: 35%;
+  border: 2px black solid;
+}
+
+#loginBtn {
+  width: 40%;
+  height: 20%;
+  border: 1.5px black solid;
+  border-radius: 5%;
+  font-size: 120%;
+  margin-top: 2.5%;
+  margin-bottom: 5%;
+}
+
+#loginBtn:active {
+  font-weight: 900;
+}
+
+#header {
+  position: fixed;
+  width: 100dvw;
+  height: 10dvh;
+  top: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: gainsboro;
+z-index: 1;
+}
+
+#mazeListModalOpenBtn {
+  width: 5%;
+  height: 75%;
+  background-color: white;
+  border-radius: 5%;
+  font-size: 90%;
+}
+
+#mazeListModalOpenBtn:active {
+  font-weight: 900;
+}
+
+.currentMazeInfoContainer {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.currentMazeInfoContainer_label {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  font-weight: 900;
+}
+
+#currentMazeLevelContainer,
+#currentMazeSideContainer {
+  width: 80%;
+  height: 40%;
+  border: 1px black solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 95%;
+  background-color: white;
+}
+
+#currentMazeStartCoordInfoContainer,
+#currentMazeDestinationCoordInfoContainer {
+  width: 20%;
+}
+
+#currentMazeStartYCoordContainer,
+#currentMazeStartXCoordContainer,
+#currentMazeDestinationYCoordContainer,
+#currentMazeDestinationXCoordContainer {
+  width: 40%;
+  height: 40%;
+  font-size: 95%;
+
+  border: 1px black solid;
+  text-align: center;
+  background-color: white;
+}
+
+#mazeCreateBtn,
+#currentMazeSaveBtn,
+#currentMazeDeleteBtn,
+#logoutBtn {
+  width: 5%;
+  height: 75%;
+  background-color: white;
+  border-radius: 5%;
+  font-size: 90%;
+}
+
+#mazeCreateBtn:active,
+#currentMazeSaveBtn:active,
+#currentMazeDeleteBtn:active,
+#logoutBtn:active {
+  font-weight: 900;
+}
+
+#mazeBody {
+  position: absolute;
+  width: 100%;
+  /* side * mazeRoom width + marginPer10rooms * side / 10 */
+  height: 90%;
+  top: 10dvh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+z-index: 0;
+}
+
+.mazeRoom {
+  width: 50px;
+  height: 50px;
+  border: 1px black solid;
+}
+
+.upAvailableRoom {
+  border-top: 1px white solid;
+}
+
+.downAvailableRoom {
+  border-bottom: 1px white solid;
+}
+
+.leftAvailableRoom {
+  border-left: 1px white solid;
+}
+
+.rightAvailableRoom {
+  border-right: 1px white solid;
+}
+
+.rightMarginRoom {
+  margin-right: 5px;
+}
+
+.bottomMarginRoom {
+  margin-bottom: 5px;
+}
+
+#startRoom {
+  background-image: url('/images/start.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+#destinationRoom {
+  background-image: url('/images/end.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.modal {
+  position: fixed;
+  width: 90%;
+  height: 80%;
+  left: 5%;
+  top: 10%;
+  display: none;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  z-index: 3;
+}
+
+.outOfModal {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-color: black;
+  opacity: 0.5;
+z-index: 2;
+}
+
+#mazeListModal {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+}
+
+#mazeListModal::-webkit-scrollbar {
+  display: none;
+}
+
+#mazeList {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.mazeListModal_mazeBtn {
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  border-radius: 5%;
+  background-color: gainsboro;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+}
+
+.mazeListModal_mazeBtn:active {
+  font-weight: 900;
+}
+
+#alertModal,
+#loadingModal {
+  font-size: 130%;
+  font-weight: 900;
+  width: 40%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  height: 40%;
+  top: 30%;
+  left: 30%;
+  border: 2px black solid;
+  justify-content: center;
+}

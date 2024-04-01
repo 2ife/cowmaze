@@ -1,0 +1,675 @@
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  width: 100dvw;
+  height: 200dvh;
+  -ms-overflow-style: none;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: black;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#gameZone {
+  position: fixed;
+  width: 48dvh;
+  height: 96dvh;
+  background-color: white;
+  font-size: 3dvh;
+  top: 2dvh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width:48vh) {
+  #gameZone {
+    width: 96dvw;
+    height: 192dvw;
+    font-size: 6dvw;
+    top: calc((100dvh - 192dvw)/2);
+  }
+}
+
+#startImgCowBody,
+#startImgCowHead {
+  position: absolute;
+  width: 25%;
+  height: 12.5%;
+}
+
+#loginJoinContainer {
+  position: absolute;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  border: 2px black solid;
+  background-color: white;
+}
+
+.loginJoinContainer_inputContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 90%;
+  height: 10%;
+}
+
+.loginJoinContainer_inputContainer label {
+  width: 30%;
+  font-size: 75%;
+  font-weight: 700;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.loginJoinContainer_inputContainer input {
+  width: 70%;
+  height: 35%;
+  border: 2px black solid;
+}
+
+#loginBtn,
+#joinBtn {
+  width: 40%;
+  height: 7.5%;
+  border: 1.5px black solid;
+  border-radius: 5%;
+  font-size: 90%;
+  margin-top: 2.5%;
+  margin-bottom: 5%;
+}
+
+#loginBtn:active,
+#joinBtn:active {
+  font-weight: 900;
+}
+
+.loginJoinBorder {
+  border-top: 2px black solid;
+}
+
+#gamePart {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+
+}
+
+#gamePartHeader {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: gainsboro;
+}
+
+#mazeInfoContainer {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#mazeNameContainer {
+  font-size: 110%;
+  font-weight: 900;
+}
+
+#mazeCoordContainer {
+  font-size: 80%;
+}
+
+#mapBtn {
+  position: relative;
+  width: 16%;
+  height: 80%;
+  border-radius: 10%;
+  background-color: white;
+  background-image: url('/images/map.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px black solid;
+}
+
+#mapBtn:active {
+  border: 0;
+}
+
+#mapModeShower {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+}
+
+#mazePart {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  background-color: white;
+}
+
+#mazeCanvas {
+  width: 100%;
+  height: 100%;
+}
+
+#mazeCowContainer {
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  top: 0;
+  left: 0;
+}
+
+#mazeCowBody,
+#mazeCowHead {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+}
+
+#menuBtnPart {
+  width: 100%;
+  height: 12.5%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+#profileBtn {
+  background-image: url('/images/cow.png');
+  border-right: 2px black solid;
+}
+
+#rankBtn {
+  background-image: url('/images/rank.png');
+  border-right: 2px black solid;
+}
+
+#shopBtn {
+  background-image: url('/images/coin.png');
+  border-right: 2px black solid;
+}
+
+#inquiryBtn {
+  background-image: url('/images/ask.png');
+}
+
+#menuBtnPart button {
+  width: 25%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+}
+
+#menuBtnPart button:active {
+  background-size: 90%;
+  background-position: center;
+}
+
+#hpPart {
+  position: relative;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+#currentHpBar {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  background-color: greenyellow;
+}
+
+#currentHpInfoContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 90%;
+  font-weight: 900;
+  border-bottom: 2px black solid;
+}
+
+#controllerPart {
+  width: 100%;
+  height: 17.5%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+#potionContainer {
+  position: relative;
+  width: 21%;
+  height: 60%;
+  background-image: url('/images/potion.png');
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position-x: center;
+  /* border: 2px black solid; */
+}
+
+#potionAmountsContainer {
+  position: absolute;
+  bottom: 0;
+  font-size: 80%;
+  font-weight: 900;
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#moveBtnContainer {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 11.25%;
+}
+
+#upBtn {
+  background-image: url('/images/up.png');
+  margin: 5% 35% 0 35%;
+
+}
+
+#leftBtn {
+  background-image: url('/images/left.png');
+
+}
+
+#rightBtn {
+  background-image: url('/images/right.png');
+
+
+
+}
+
+#downBtn {
+  background-image: url('/images/down.png');
+  margin: 0 35% 5% 35%;
+
+}
+
+#moveBtnContainer button {
+  width: 30%;
+  height: 30%;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
+  background-color: rgb(225, 225, 225);
+}
+
+#moveBtnContainer button:active {
+  background-size: 80%;
+
+}
+
+#saveBtn {
+  width: 14%;
+  height: 40%;
+  background-image: url('/images/save.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+#saveBtn:active {
+  background-size: 90%;
+
+}
+
+.modal {
+  position: absolute;
+  width: 90%;
+  height: 80%;
+  left: 5%;
+  top: 10%;
+  display: none;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+}
+
+.outOfModal {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.modalHeader {
+  width: 100%;
+  height: 6.25%;
+  position: relative;
+  background-color: black;
+}
+
+.modalQuitBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12.5%;
+  height: 100%;
+  font-size: 90%;
+  font-weight: 900;
+  color: white;
+}
+
+.modalQuitBtn:active {
+  font-size: 80%;
+}
+
+.profileModal_inputContainer {
+  width: 95%;
+  height: 10%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profileModal_inputContainer label {
+  width: 20%;
+  font-size: 65%;
+  font-weight: 700;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.profileModal_inputContainer input {
+  width: 50%;
+  height: 35%;
+  border: 2px black solid;
+}
+
+.profileModal_inputContainer button {
+  width: 20%;
+  height: 50%;
+  font-size: 65%;
+  border: 1px black solid;
+}
+
+.profileModal_inputContainer button:active {
+  font-weight: 900;
+}
+
+#logoutBtn {
+  font-size: 55%;
+}
+
+#inviteEventInfo {
+  width: 95%;
+  height: 32.5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+  font-size: 85%;
+  line-height: 110%;
+}
+
+#inviteNumberContainer {
+  width: 95%;
+  height: 10%;
+  margin-top: 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  font-weight: 900;
+  background-color: gainsboro;
+}
+
+#rankerList {
+  width: 87.5%;
+  height: 87.5%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 6.25%;
+}
+
+.rankerInfoContainer {
+  width: 100%;
+  height: calc(100%/14);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px black solid;
+  border-bottom: 0;
+}
+
+.rankerInfoContainer_rankContainer {
+  width: calc(100%/7);
+  height: 100%;
+  border-right: 1px black solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80%;
+  font-weight: 900;
+}
+
+.rankerInfoContainer_nickContainer {
+  width: calc(300%/7);
+  height: 100%;
+  border-right: 1px black solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80%;
+  font-weight: 900;
+}
+
+.rankerInfoContainer_currentMazeLevelContainer {
+  width: calc(300%/7);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80%;
+  font-weight: 900;
+}
+
+#myRankInfoContainer {
+  border-bottom: 1px black solid;
+}
+
+#shopSellingPotionList {
+  width: calc(700%/8);
+  height: calc(250%/16);
+  margin-top: 6.25%;
+  margin-bottom: 6.25%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.shopSellingPotionContainer {
+  width: calc(100%/3);
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  background-image: url('/images/potion.png');
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position-x: center;
+  background-position-y: top;
+  border: 1px black solid;
+  border-left: 0;
+}
+
+.shopSellingPotionContainer:active {
+  font-weight: 900;
+}
+
+#shopSelling1PotionContainer {
+  border-left: 1px black solid;
+
+}
+
+.shopSellingPotionAmountContainer {
+  font-size: 70%;
+  /* font-weight: 900; */
+  position: absolute;
+  right: 2.5%;
+  top: 2.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shopSellingPotionPriceContainer {
+  width: 100%;
+  height: 20%;
+  font-size: 75%;
+  /* font-weight: 900; */
+  text-align: center;
+  border-top: 1px black solid;
+}
+
+#shopInfo {
+  width: 95%;
+  height: 47.5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+  font-size: 90%;
+  line-height: 110%;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+#shopInfo span {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+#chargeCashInfo {
+  width: 95%;
+  height: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  font-weight: 900;
+  background-color: gainsboro;
+}
+
+#inquiryInfo {
+  width: 95%;
+  height: 83.75%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  font-size: 85%;
+  line-height: 110%;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+#alertModal,
+#loadingModal {
+  height: 45%;
+  top: 27.5%;
+  border: 2px black solid;
+  justify-content: center;
+}
+
+#potionPurchaseModal {
+  height: 30%;
+  top: 35%;
+  border: 2px black solid;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+#potionPurchaseContentContainer {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 85%;
+  font-weight: 900;
+}
+
+.potionPurchaseModal_btn {
+  width: 40%;
+  height: 25%;
+  border: 2px black solid;
+  font-weight: 900;
+  font-size: 140%;
+}
+
+#alertModal {
+  font-size: 85%;
+  width: 80%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+#loadingCowBody,
+#loadingCowHead {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  top: 30%;
+  left: 30%;
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+  <title>cowmaze</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheet/common.css?version=0.0.1">
+  <link rel="stylesheet" type="text/css" href="/stylesheet/home.css?version=0.0.1">
+  <link rel="apple-touch-icon" href="/images/mainImgIOS.png" />
+  <link rel="shortcut icon" href="/images/mainImgAndroid.png" />
+</head>
+
+<body>
+  <div id="gameZone">
+    <img src="/images/cowBodyLeftFootForward.png" alt="" id="startImgCowBody" class="leftFootForward">
+    <img src="/images/cowHead.png" alt="" id="startImgCowHead">
+    <div id="loginJoinContainer" style="display: none;">
+      <div class="loginJoinContainer_inputContainer">
+        <label for="login_id">ID</label>
+        <input type="text" id="login_id" name="id">
+      </div>
+      <div class="loginJoinContainer_inputContainer">
+        <label for="login_password">비밀번호</label>
+        <input type="password" id="login_password" name="password">
+      </div>
+      <button id="loginBtn">로그인</button>
+      <div class="loginJoinContainer_inputContainer loginJoinBorder">
+        <label for="join_nick">닉네임</label>
+        <input type="text" id="join_nick" name="nick" placeholder="2~8자 내 한글, 영어, 숫자">
+      </div>
+      <div class="loginJoinContainer_inputContainer">
+        <label for="join_id">ID</label>
+        <input type="text" id="join_id" name="id" placeholder="6~16자 내 영어, 숫자">
+      </div>
+      <div class="loginJoinContainer_inputContainer">
+        <label for="join_password">비밀번호</label>
+        <input type="password" id="join_password" name="password" placeholder="6~16자 내 영어, 숫자, !@#$%^&*()._-">
+      </div>
+      <div class="loginJoinContainer_inputContainer">
+        <label for="join_passwordCheck">비밀번호 확인</label>
+        <input type="password" id="join_passwordCheck" name="passwordCheck">
+      </div>
+      <div class="loginJoinContainer_inputContainer">
+        <label for="join_inviterCode">초대코드</label>
+        <input type="text" id="join_inviterCode" name="inviterCode" value="0000001">
+      </div>
+      <button id="joinBtn">회원가입</button>
+    </div>
+    <div id="gamePart" style="display: none;">
+      <div id="gamePartHeader">
+        <div id="mazeInfoContainer">
+          <div id="mazeNameContainer">제1미궁</div>
+          <div id="mazeCoordContainer">(10 * 10)</div>
+        </div>
+        <button id="mapBtn">
+        </button>
+      </div>
+      <div id="mazePart">
+        <canvas id="mazeCanvas" width="2000" height="2000"></canvas>
+        <div id="mazeCowContainer">
+
+          <img src="/images/cowBodyLeftFootForward.png" alt="" id="mazeCowBody" class="leftFootForward">
+          <img src="/images/cowHead.png" alt="" id="mazeCowHead">
+        </div>
+      </div>
+      <div id="menuBtnPart">
+        <button id="profileBtn"></button>
+        <button id="rankBtn"></button>
+        <button id="shopBtn"></button>
+        <button id="inquiryBtn"></button>
+      </div>
+      <div id="hpPart">
+        <div id="currentHpBar"></div>
+        <div id="currentHpInfoContainer">1,000 / 1,000</div>
+      </div>
+      <div id="controllerPart">
+        <div id="potionContainer">
+          <div id="potionAmountsContainer">129</div>
+        </div>
+        <div id="moveBtnContainer">
+          <button id="upBtn"></button>
+          <button id="leftBtn"></button>
+          <button></button>
+          <button id="rightBtn"></button>
+          <button id="downBtn"></button>
+        </div>
+        <button id="saveBtn"></button>
+      </div>
+    </div>
+    <div id="outOfProfileModal" class="outOfModal"></div>
+    <div id="profileModal" class="modal">
+      <div class="modalHeader">
+        <button class="modalQuitBtn">✖</button>
+      </div>
+      <div class="profileModal_inputContainer">
+        <label for="profileModal_nick">닉네임</label>
+        <input type="text" id="profileModal_nick" name="nick">
+        <button id="nickChangeBtn" class="profileModalBtn">변경</button>
+      </div>
+      <div class="profileModal_inputContainer">
+        <label for="profileModal_id">ID</label>
+        <input type="text" id="profileModal_id" name="id" readonly>
+        <button id="logoutBtn" class="profileModalBtn">로그아웃</button>
+      </div>
+      <div class="profileModal_inputContainer">
+        <label for="profileModal_password">비밀번호</label>
+        <input type="password" id="profileModal_password" name="password">
+        <button id="passwordChangeBtn" class="profileModalBtn">변경</button>
+      </div>
+      <div class="profileModal_inputContainer">
+        <label for="profileModal_userCode">유저코드</label>
+        <input type="text" id="profileModal_userCode" name="userCode" readonly>
+        <button id="leaveBtn" class="profileModalBtn">탈퇴</button>
+      </div>
+      <div id="inviteEventInfo">
+        <span style="font-weight: 900;">&nbsp;초대 이벤트</span>
+        <br>
+        <br>
+        &nbsp;다른 유저가 회원가입할 때, 초대코드란에 위에 있는 유저코드를 입력하여 회원가입한 후, 제2미궁까지 클리어하면, 물약 1개를 획득니다.
+        <br><br>&nbsp;(최대 100번까지 가능합니다.)
+      </div>
+      <div id="inviteNumberContainer">물약 획득: 100</div>
+    </div>
+    <div id="outOfRankModal" class="outOfModal"></div>
+    <div id="rankModal" class="modal">
+      <div class="modalHeader">
+        <button class="modalQuitBtn">✖</button>
+      </div>
+      <div id="rankerList">
+        <div id="rankerListHeader" class="rankerInfoContainer">
+          <div class="rankerInfoContainer_rankContainer">순위</div>
+          <div class="rankerInfoContainer_nickContainer">닉네임</div>
+          <div class="rankerInfoContainer_currentMazeLevelContainer">현재 위치</div>
+        </div>
+        {% for i in range(0,12) %}
+        <div class="rankerInfoContainer otherRankerInfoContainer">
+          <div class="rankerInfoContainer_rankContainer">{{i+1}}</div>
+          <div class="rankerInfoContainer_nickContainer"></div>
+          <div class="rankerInfoContainer_currentMazeLevelContainer"></div>
+        </div>
+        {% endfor %}
+        <div id="myRankInfoContainer" class="rankerInfoContainer">
+          <div class="rankerInfoContainer_rankContainer">나</div>
+          <div class="rankerInfoContainer_nickContainer"></div>
+          <div class="rankerInfoContainer_currentMazeLevelContainer"></div>
+        </div>
+      </div>
+    </div>
+    <div id="outOfShopModal" class="outOfModal"></div>
+    <div id="shopModal" class="modal">
+      <div class="modalHeader">
+        <button class="modalQuitBtn">✖</button>
+      </div>
+      <div id="shopSellingPotionList">
+        {% for i in range(0,3) %}
+        <div id="shopSelling{{10**i}}PotionContainer" class="shopSellingPotionContainer">
+          <div class="shopSellingPotionAmountContainer">{{10**i}}</div>
+          <div class="shopSellingPotionPriceContainer">{{['100₩','2,000₩','10,000₩'][i]}}</div>
+        </div>
+        {% endfor %}
+      </div>
+      <div id="shopInfo">
+        <!-- becauseOfTest -->
+        <!-- &nbsp;아이템 구매 후, 곧바로 <span style="font-weight: 900;">국민은행 939302-00-448094</span>로 입금 바랍니다. 입금이 정상적으로 진행되지
+        않을 시, 계정이 정지되며, 입금이 확인된 후 다시 아이템 구매까지 다소 시간이 걸릴 수 있으니, 이 점 유의 바랍니다.
+        <br>
+        <br>
+        <span style="font-weight: 900;">&nbsp;입금 시, '받는 사람 표시'란에 '<span id="shopInfoUserCode">0000912</span>'를 입력해야 입금이
+          확인되므로, 꼭 입력바랍니다. </span> -->
+        &nbsp;현재 테스트 기간으로 아이템 구매 불가
+      </div>
+      <div id="chargeCashInfo">
+        입금 필요 금액: 0₩
+      </div>
+    </div>
+    <div id="outOfInquiryModal" class="outOfModal"></div>
+    <div id="inquiryModal" class="modal">
+      <div class="modalHeader">
+        <button class="modalQuitBtn">✖</button>
+      </div>
+      <div id="inquiryInfo">
+        &nbsp;문의: 2life1601-@naver.com
+        <br>
+        <br>
+        &nbsp;제목 형식: 본인 ID/문의 내용
+        <br>
+        <br>
+        &nbsp;문의사항은 영업일 오후 1~3시쯤 확인하며, 순차적 진행으로 인해 문의 진행 및 답변까지 다소 시간이 걸릴 수 있으며, 문의 내용에 따라 답변이 따로 없을 수도 있는 점 양해 부탁드립니다.
+        <br>
+        <br>
+        <!-- <a href="https://naver.com/">공략</a> -->
+      </div>
+    </div>
+    <div id="outOfPotionPurchaseModal" class="outOfModal"></div>
+    <div id="potionPurchaseModal" class="modal">
+      <div id="potionPurchaseContentContainer">해당 아이템을 구매하시겠습니까?</div>
+      <button class="potionPurchaseModal_btn" id="potionPurchaseAgreeBtn">O</button>
+      <button class="potionPurchaseModal_btn" id="potionPurchaseDisagreeBtn">X</button>
+    </div>
+    <div id="outOfAlertModal" class="outOfModal"></div>
+    <div id="alertModal" class="modal"></div>
+    <div id="outOfLoadingModal" class="outOfModal"></div>
+    <div id="loadingModal" class="modal">
+      <img src="/images/cowBodyLeftFootForward.png" alt="" id="loadingCowBody" class="leftFootForward">
+      <img src="/images/cowHead.png" alt="" id="loadingCowHead">
+    </div>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/scripts/home.js?version=0.0.1"></script>
+</body>
+
+</html>

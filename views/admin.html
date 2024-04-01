@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+  <title>cowmaze</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheet/common.css?version=0.0.1">
+  <link rel="stylesheet" type="text/css" href="/stylesheet/admin.css?version=0.0.1">
+  <link rel="apple-touch-icon" href="/images/mainImgIOS.png" />
+  <link rel="shortcut icon" href="/images/mainImgAndroid.png" />
+</head>
+
+<body>
+  <div style="display: none;" id="loginContainer">
+    <div class="loginContainer_inputContainer">
+      <label for="login_id">ID</label>
+      <input type="text" id="login_id" name="id">
+    </div>
+    <div class="loginContainer_inputContainer">
+      <label for="login_password">비밀번호</label>
+      <input type="password" id="login_password" name="password">
+    </div>
+    <button id="loginBtn">로그인</button>
+  </div>
+  <div id="header">
+    <button id="mazeListModalOpenBtn">미로 목록</button>
+    <div id="currentMazeLevelInfoContainer" class="currentMazeInfoContainer">
+      <div class="currentMazeInfoContainer_label">레벨</div>
+      <input type="text" id="currentMazeLevelContainer" value="">
+    </div>
+    <div id="currentMazeSideInfoContainer" class="currentMazeInfoContainer">
+      <div class="currentMazeInfoContainer_label">길이</div>
+      <input type="text" id="currentMazeSideContainer" value="10">
+    </div>
+    <div id="currentMazeStartCoordInfoContainer" class="currentMazeInfoContainer">
+      <div class="currentMazeInfoContainer_label">시작점 좌표</div>
+      <input type="text" id="currentMazeStartYCoordContainer" value="0">
+      <input type="text" id="currentMazeStartXCoordContainer" value="0">
+    </div>
+    <div id="currentMazeDestinationCoordInfoContainer" class="currentMazeInfoContainer">
+      <div class="currentMazeInfoContainer_label">도착점 좌표</div>
+      <input type="text" id="currentMazeDestinationYCoordContainer" value="0">
+      <input type="text" id="currentMazeDestinationXCoordContainer" value="0">
+    </div>
+    <button id="mazeCreateBtn">미로 생성</button>
+    <button id="currentMazeSaveBtn">미로 저장</button>
+    <button id="currentMazeDeleteBtn">미로 삭제</button>
+    <button id="logoutBtn">로그아웃</button>
+  </div>
+  <div id="mazeBody">
+  </div>
+  <div  id="outOfMazeListModal" class="outOfModal"></div>
+  <div  id="mazeListModal" class="modal">
+    <div id="mazeList">
+      </button>
+    </div>
+  </div>
+  <div id="outOfAlertModal" class="outOfModal"></div>
+  <div id="alertModal" class="modal"></div>
+  <div id="outOfLoadingModal" class="outOfModal"></div>
+  <div id="loadingModal" class="modal">로딩 중</div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/scripts/admin.js?version=0.0.1"></script>
+</body>
+
+</html>
