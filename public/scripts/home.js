@@ -25,6 +25,7 @@ const mazeCanvas = mazePart.querySelector("#mazeCanvas");
 const mazeCanvasCtx = mazeCanvas.getContext("2d");
 const mazeCowContainer = mazePart.querySelector("#mazeCowContainer");
 const mazeCowBody = mazePart.querySelector("#mazeCowBody");
+const mazePartWrapper = mazePart.querySelector("#mazePartWrapper");
 const menuBtnPart = document.querySelector("#menuBtnPart");
 const profileBtn = menuBtnPart.querySelector("#profileBtn");
 const rankBtn = menuBtnPart.querySelector("#rankBtn");
@@ -35,12 +36,6 @@ const currentHpBar = hpPart.querySelector("#currentHpBar");
 const currentHpInfoContainer = hpPart.querySelector("#currentHpInfoContainer");
 const controllerPart = document.querySelector("#controllerPart");
 const potionAmountsContainer = controllerPart.querySelector("#potionAmountsContainer");
-const moveBtn = controllerPart.querySelector("#moveBtn");
-// const upBtn = controllerPart.querySelector("#upBtn") as HTMLButtonElement;
-// const leftBtn = controllerPart.querySelector("#leftBtn") as HTMLButtonElement;
-// const rightBtn = controllerPart.querySelector("#rightBtn") as HTMLButtonElement;
-// const downBtn = controllerPart.querySelector("#downBtn") as HTMLButtonElement;
-// const moveBtns = [upBtn, downBtn, leftBtn, rightBtn];
 const saveBtn = controllerPart.querySelector("#saveBtn");
 const outOfModals = document.querySelectorAll(".outOfModal");
 const modals = document.querySelectorAll(".modal");
@@ -969,17 +964,17 @@ shopBtn.addEventListener("click", openShopModal);
 inquiryBtn.addEventListener("click", openInquiryModal);
 if (navigator.userAgent.match(/mobile/i) ||
     navigator.userAgent.match(/iPad|Android|Touch/i)) {
-    moveBtn.addEventListener("touchstart", (event) => {
-        const moveBtnRect = moveBtn.getBoundingClientRect();
-        const x = (event.touches[0].clientX - moveBtnRect.left) / moveBtn.offsetWidth;
-        const y = (event.touches[0].clientY - moveBtnRect.top) / moveBtn.offsetHeight;
+    mazePartWrapper.addEventListener("touchstart", (event) => {
+        const mazePartWrapperRect = mazePartWrapper.getBoundingClientRect();
+        const x = (event.touches[0].clientX - mazePartWrapperRect.left) / mazePartWrapper.offsetWidth;
+        const y = (event.touches[0].clientY - mazePartWrapperRect.top) / mazePartWrapper.offsetHeight;
         executeClickMoveBtn(x, y);
     });
 }
 else {
-    moveBtn.addEventListener("click", (event) => {
-        const x = event.offsetX / moveBtn.offsetWidth;
-        const y = event.offsetY / moveBtn.offsetHeight;
+    mazePartWrapper.addEventListener("click", (event) => {
+        const x = event.offsetX / mazePartWrapper.offsetWidth;
+        const y = event.offsetY / mazePartWrapper.offsetHeight;
         executeClickMoveBtn(x, y);
     });
 }
@@ -1004,50 +999,6 @@ window.addEventListener("keydown", (event) => {
         }
     }
 });
-// moveBtns.forEach((moveBtn, index) => {
-//   if (
-//     navigator.userAgent.match(/mobile/i) ||
-//     navigator.userAgent.match(/iPad|Android|Touch/i)
-//   ) {
-//     moveBtn.addEventListener("touchstart", () => {
-//       clickMoveBtn(moves[index])();
-//       clickInterval = setInterval(() => {
-//         clickMoveBtn(moves[index])();
-//       }, 200);
-//     });
-//     moveBtn.addEventListener("touchend", () => {
-//       if (clickInterval) {
-//         clearInterval(clickInterval);
-//       }
-//     });
-//     moveBtn.addEventListener("touchmove", (event: TouchEvent) => {
-//       const touch = event.touches[0];
-//       if (
-//         clickInterval &&
-//         document.elementFromPoint(touch.pageX, touch.pageY) !== moveBtn
-//       ) {
-//         clearInterval(clickInterval);
-//       }
-//     });
-//   } else {
-//     moveBtn.addEventListener("mousedown", () => {
-//       clickMoveBtn(moves[index])();
-//       clickInterval = setInterval(() => {
-//         clickMoveBtn(moves[index])();
-//       }, 200);
-//     });
-//     moveBtn.addEventListener("mouseup", () => {
-//       if (clickInterval) {
-//         clearInterval(clickInterval);
-//       }
-//     });
-//     moveBtn.addEventListener("mouseleave", () => {
-//       if (clickInterval) {
-//         clearInterval(clickInterval);
-//       }
-//     });
-//   }
-// });
 saveBtn.addEventListener("click", saveCurrentData);
 modalQuitBtns.forEach((modalQuitBtn, index) => {
     modalQuitBtn.addEventListener("click", quitModal(index));

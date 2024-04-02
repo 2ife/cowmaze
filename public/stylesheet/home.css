@@ -112,23 +112,15 @@ body::-webkit-scrollbar {
 
 }
 
-#gamePartHeader {
+#mazeInfoContainer {
   width: 100%;
   height: 10%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: gainsboro;
-}
-
-#mazeInfoContainer {
-  width: 70%;
-  height: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
   align-items: center;
+  background-color: gainsboro;
+  border-bottom: 1px black solid;
 }
 
 #mazeNameContainer {
@@ -138,29 +130,6 @@ body::-webkit-scrollbar {
 
 #mazeCoordContainer {
   font-size: 80%;
-}
-
-#mapBtn {
-  position: relative;
-  width: 16%;
-  height: 80%;
-  border-radius: 10%;
-  background-color: white;
-  background-image: url('/images/map.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 2px black solid;
-}
-
-#mapBtn:active {
-  border: 0;
-}
-
-#mapModeShower {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
 }
 
 #mazePart {
@@ -190,6 +159,14 @@ body::-webkit-scrollbar {
   left: 5%;
   width: 90%;
   height: 90%;
+}
+
+#mazePartWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
 #menuBtnPart {
@@ -272,12 +249,28 @@ body::-webkit-scrollbar {
   justify-content: space-around;
   align-items: center;
   background-color: white;
+  border-top: 1px black solid;
+}
+
+#mapBtn {
+  width: 21%;
+  height: 60%;
+  border-radius: 10%;
+  background-color: white;
+  background-image: url('/images/map.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px black solid;
+}
+
+#mapBtn:active {
+  border: 0;
 }
 
 #potionContainer {
   position: relative;
-  width: 21%;
-  height: 60%;
+  width: 28%;
+  height: 80%;
   background-image: url('/images/potion.png');
   background-repeat: no-repeat;
   background-size: 75%;
@@ -297,60 +290,9 @@ body::-webkit-scrollbar {
   align-items: center;
 }
 
-#moveBtn {
-  width: 35%;
-  height: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0 11.25%;
-  background-image: url('/images/moveBtn.png');
-  background-size: cover;
-  border: 2px black solid;
-}
-
-/* #upBtn {
-  background-image: url('/images/up.png');
-  margin: 5% 35% 0 35%;
-
-}
-
-#leftBtn {
-  background-image: url('/images/left.png');
-
-}
-
-#rightBtn {
-  background-image: url('/images/right.png');
-
-
-
-}
-
-#downBtn {
-  background-image: url('/images/down.png');
-  margin: 0 35% 5% 35%;
-
-}
-
-#moveBtn button {
-  width: 30%;
-  height: 30%;
-  background-repeat: no-repeat;
-  background-size: 90%;
-  background-position: center;
-  background-color: rgb(225, 225, 225);
-}
-
-#moveBtn button:active {
-  background-size: 80%;
-
-} */
-
 #saveBtn {
-  width: 14%;
-  height: 40%;
+  width: 21%;
+  height: 60%;
   background-image: url('/images/save.png');
   background-repeat: no-repeat;
   background-size: 100%;
