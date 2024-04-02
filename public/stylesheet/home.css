@@ -3,6 +3,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  touch-action: pinch-zoom;
 }
 
 body {
@@ -298,13 +299,20 @@ body::-webkit-scrollbar {
 }
 
 #moveBtnContainer {
-  width: 35%;
-  height: 100%;
+  width: 28%;
+  height: 80%;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   margin: 0 11.25%;
+  background-image: url('/images/moveBtn.png');
+  background-size: cover;
+  border: 2px black solid;
+}
+
+#moveBtnContainer:active{
+  background-color: rgb(245, 245, 245);
 }
 
 #upBtn {

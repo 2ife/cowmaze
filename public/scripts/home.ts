@@ -75,11 +75,14 @@ const controllerPart = document.querySelector(
 const potionAmountsContainer = controllerPart.querySelector(
   "#potionAmountsContainer"
 ) as HTMLDivElement;
-const upBtn = controllerPart.querySelector("#upBtn") as HTMLButtonElement;
-const leftBtn = controllerPart.querySelector("#leftBtn") as HTMLButtonElement;
-const rightBtn = controllerPart.querySelector("#rightBtn") as HTMLButtonElement;
-const downBtn = controllerPart.querySelector("#downBtn") as HTMLButtonElement;
-const moveBtns = [upBtn, downBtn, leftBtn, rightBtn];
+const moveBtnContainer = controllerPart.querySelector(
+  "#moveBtnContainer"
+) as HTMLDivElement;
+// const upBtn = controllerPart.querySelector("#upBtn") as HTMLButtonElement;
+// const leftBtn = controllerPart.querySelector("#leftBtn") as HTMLButtonElement;
+// const rightBtn = controllerPart.querySelector("#rightBtn") as HTMLButtonElement;
+// const downBtn = controllerPart.querySelector("#downBtn") as HTMLButtonElement;
+// const moveBtns = [upBtn, downBtn, leftBtn, rightBtn];
 const saveBtn = controllerPart.querySelector("#saveBtn") as HTMLButtonElement;
 
 const outOfModals = document.querySelectorAll(
@@ -1162,50 +1165,104 @@ profileBtn.addEventListener("click", openProfileModal);
 rankBtn.addEventListener("click", openRankModal);
 shopBtn.addEventListener("click", openShopModal);
 inquiryBtn.addEventListener("click", openInquiryModal);
-moveBtns.forEach((moveBtn, index) => {
-  if (
-    navigator.userAgent.match(/mobile/i) ||
-    navigator.userAgent.match(/iPad|Android|Touch/i)
-  ) {
-    moveBtn.addEventListener("touchstart", () => {
-      clickMoveBtn(moves[index])();
-      clickInterval = setInterval(() => {
-        clickMoveBtn(moves[index])();
-      }, 200);
-    });
-    moveBtn.addEventListener("touchend", () => {
-      if (clickInterval) {
-        clearInterval(clickInterval);
+moveBtnContainer.addEventListener("click", (event) => {
+  const x = event.offsetX / moveBtnContainer.offsetWidth;
+  const y = event.offsetY / moveBtnContainer.offsetHeight;
+  if (y <= 0.5) {
+    if (x <= 0.5) {
+      if (y <= x) {
+        clickMoveBtn("up")();
+      } else {
+        clickMoveBtn("left")();
       }
-    });
-    moveBtn.addEventListener("touchmove", (event: TouchEvent) => {
-      const touch = event.touches[0];
-      if (
-        clickInterval &&
-        document.elementFromPoint(touch.pageX, touch.pageY) !== moveBtn
-      ) {
-        clearInterval(clickInterval);
+    } else {
+      if (y <= 1 - x) {
+        clickMoveBtn("up")();
+      } else {
+        clickMoveBtn("right")();
       }
-    });
+    }
   } else {
-    moveBtn.addEventListener("mousedown", () => {
-      clickMoveBtn(moves[index])();
-      clickInterval = setInterval(() => {
-        clickMoveBtn(moves[index])();
-      }, 200);
-    });
-    moveBtn.addEventListener("mouseup", () => {
-      if (clickInterval) {
-        clearInterval(clickInterval);
+    if (x <= 0.5) {
+      if (y >= 1 - x) {
+        clickMoveBtn("down")();
+      } else {
+        clickMoveBtn("left")();
       }
-    });
-    moveBtn.addEventListener("mouseleave", () => {
-      if (clickInterval) {
-        clearInterval(clickInterval);
+    } else {
+      if (y >= x) {
+        clickMoveBtn("down")();
+      } else {
+        clickMoveBtn("right")();
       }
-    });
+    }
   }
 });
+window.addEventListener("keydown", (event: KeyboardEvent) => {
+  const key = event.key;
+  switch (key) {
+    case "ArrowUp": {
+      clickMoveBtn("up")();
+      break;
+    }
+    case "ArrowDown": {
+      clickMoveBtn("down")();
+      break;
+    }
+    case "ArrowLeft": {
+      clickMoveBtn("left")();
+      break;
+    }
+    case "ArrowRight": {
+      clickMoveBtn("right")();
+      break;
+    }
+  }
+});
+// moveBtns.forEach((moveBtn, index) => {
+//   if (
+//     navigator.userAgent.match(/mobile/i) ||
+//     navigator.userAgent.match(/iPad|Android|Touch/i)
+//   ) {
+//     moveBtn.addEventListener("touchstart", () => {
+//       clickMoveBtn(moves[index])();
+//       clickInterval = setInterval(() => {
+//         clickMoveBtn(moves[index])();
+//       }, 200);
+//     });
+//     moveBtn.addEventListener("touchend", () => {
+//       if (clickInterval) {
+//         clearInterval(clickInterval);
+//       }
+//     });
+//     moveBtn.addEventListener("touchmove", (event: TouchEvent) => {
+//       const touch = event.touches[0];
+//       if (
+//         clickInterval &&
+//         document.elementFromPoint(touch.pageX, touch.pageY) !== moveBtn
+//       ) {
+//         clearInterval(clickInterval);
+//       }
+//     });
+//   } else {
+//     moveBtn.addEventListener("mousedown", () => {
+//       clickMoveBtn(moves[index])();
+//       clickInterval = setInterval(() => {
+//         clickMoveBtn(moves[index])();
+//       }, 200);
+//     });
+//     moveBtn.addEventListener("mouseup", () => {
+//       if (clickInterval) {
+//         clearInterval(clickInterval);
+//       }
+//     });
+//     moveBtn.addEventListener("mouseleave", () => {
+//       if (clickInterval) {
+//         clearInterval(clickInterval);
+//       }
+//     });
+//   }
+// });
 saveBtn.addEventListener("click", saveCurrentData);
 
 modalQuitBtns.forEach((modalQuitBtn, index) => {
