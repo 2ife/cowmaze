@@ -913,14 +913,14 @@ const stopLoading = () => {
     loadInterval = null;
 };
 // event listeners
-// let lastTouch = 0;
-// document.addEventListener("touchend", (event: TouchEvent) => {
-//   const now = Date.now();
-//   if (now - lastTouch <= 300) {
-//     event.preventDefault();
-//   }
-//   lastTouch = now;
-// });
+let lastTouch = 0;
+document.addEventListener("touchend", (event) => {
+    const now = Date.now();
+    if (now - lastTouch <= 300) {
+        event.preventDefault();
+    }
+    lastTouch = now;
+});
 loginBtn.addEventListener("click", login);
 joinBtn.addEventListener("click", join);
 mapBtn.addEventListener("click", changePlayMode);
@@ -929,7 +929,6 @@ rankBtn.addEventListener("click", openRankModal);
 shopBtn.addEventListener("click", openShopModal);
 inquiryBtn.addEventListener("click", openInquiryModal);
 moveBtns.forEach((moveBtn, index) => {
-    console.log(moves[index])
     if (navigator.userAgent.match(/mobile/i) ||
         navigator.userAgent.match(/iPad|Android|Touch/i)) {
         moveBtn.addEventListener("touchstart", () => {
