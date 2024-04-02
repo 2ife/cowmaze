@@ -226,13 +226,12 @@ body::-webkit-scrollbar {
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  border-top: 2px black solid;
+  background-position: center;
   border-bottom: 2px black solid;
 }
 
 #menuBtnPart button:active {
   background-size: 90%;
-  background-position: center;
 }
 
 #hpPart {
@@ -270,7 +269,7 @@ body::-webkit-scrollbar {
   height: 17.5%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background-color: white;
 }
@@ -299,8 +298,8 @@ body::-webkit-scrollbar {
 }
 
 #moveBtn {
-  width: 28%;
-  height: 80%;
+  width: 35%;
+  height: 100%;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -311,11 +310,7 @@ body::-webkit-scrollbar {
   border: 2px black solid;
 }
 
-#moveBtn:active{
-  background-color: rgb(245, 245, 245);
-}
-
-#upBtn {
+/* #upBtn {
   background-image: url('/images/up.png');
   margin: 5% 35% 0 35%;
 
@@ -351,7 +346,7 @@ body::-webkit-scrollbar {
 #moveBtn button:active {
   background-size: 80%;
 
-}
+} */
 
 #saveBtn {
   width: 14%;

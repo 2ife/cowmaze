@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
   <title>cowmaze</title>
-  <link rel="stylesheet" type="text/css" href="/stylesheet/common.css?version=0.0.4">
-  <link rel="stylesheet" type="text/css" href="/stylesheet/home.css?version=0.0.4">
+  <link rel="stylesheet" type="text/css" href="/stylesheet/common.css?version=0.0.5">
+  <link rel="stylesheet" type="text/css" href="/stylesheet/home.css?version=0.0.5">
   <link rel="apple-touch-icon" href="/images/mainImgIOS.png" />
   <link rel="shortcut icon" href="/images/mainImgAndroid.png" />
 </head>
@@ -48,6 +48,12 @@
       <button id="joinBtn">회원가입</button>
     </div>
     <div id="gamePart" style="display: none;">
+      <div id="menuBtnPart">
+        <button id="profileBtn"></button>
+        <button id="rankBtn"></button>
+        <button id="shopBtn"></button>
+        <button id="inquiryBtn"></button>
+      </div>
       <div id="gamePartHeader">
         <div id="mazeInfoContainer">
           <div id="mazeNameContainer">제1미궁</div>
@@ -63,12 +69,6 @@
           <img src="/images/cowBodyLeftFootForward.png" alt="" id="mazeCowBody" class="leftFootForward">
           <img src="/images/cowHead.png" alt="" id="mazeCowHead">
         </div>
-      </div>
-      <div id="menuBtnPart">
-        <button id="profileBtn"></button>
-        <button id="rankBtn"></button>
-        <button id="shopBtn"></button>
-        <button id="inquiryBtn"></button>
       </div>
 
       <div id="controllerPart">
@@ -208,7 +208,7 @@
     </div>
   </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="/scripts/home.js?version=0.0.4"></script>
+  <script src="/scripts/home.js?version=0.0.5"></script>
 </body>
 
 </html>
