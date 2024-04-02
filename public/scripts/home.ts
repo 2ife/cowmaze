@@ -75,9 +75,9 @@ const controllerPart = document.querySelector(
 const potionAmountsContainer = controllerPart.querySelector(
   "#potionAmountsContainer"
 ) as HTMLDivElement;
-const moveBtnContainer = controllerPart.querySelector(
-  "#moveBtnContainer"
-) as HTMLDivElement;
+const moveBtn = controllerPart.querySelector(
+  "#moveBtn"
+) as HTMLButtonElement;
 // const upBtn = controllerPart.querySelector("#upBtn") as HTMLButtonElement;
 // const leftBtn = controllerPart.querySelector("#leftBtn") as HTMLButtonElement;
 // const rightBtn = controllerPart.querySelector("#rightBtn") as HTMLButtonElement;
@@ -826,7 +826,37 @@ const saveCurrentData = async () => {
     alertByModal("오류가 발생하여 재접속합니다.");
   }
 };
-
+const executeClickMoveBtn=(x:number,y:number)=>{
+  if (y <= 0.5) {
+    if (x <= 0.5) {
+      if (y <= x) {
+        clickMoveBtn("up")();
+      } else {
+        clickMoveBtn("left")();
+      }
+    } else {
+      if (y <= 1 - x) {
+        clickMoveBtn("up")();
+      } else {
+        clickMoveBtn("right")();
+      }
+    }
+  } else {
+    if (x <= 0.5) {
+      if (y >= 1 - x) {
+        clickMoveBtn("down")();
+      } else {
+        clickMoveBtn("left")();
+      }
+    } else {
+      if (y >= x) {
+        clickMoveBtn("down")();
+      } else {
+        clickMoveBtn("right")();
+      }
+    }
+  }
+}
 const clickMoveBtn = (direction: "up" | "down" | "left" | "right") => () => {
   if (loadInterval) return;
   switch (playMode) {
@@ -1165,39 +1195,23 @@ profileBtn.addEventListener("click", openProfileModal);
 rankBtn.addEventListener("click", openRankModal);
 shopBtn.addEventListener("click", openShopModal);
 inquiryBtn.addEventListener("click", openInquiryModal);
-moveBtnContainer.addEventListener("click", (event) => {
-  const x = event.offsetX / moveBtnContainer.offsetWidth;
-  const y = event.offsetY / moveBtnContainer.offsetHeight;
-  if (y <= 0.5) {
-    if (x <= 0.5) {
-      if (y <= x) {
-        clickMoveBtn("up")();
-      } else {
-        clickMoveBtn("left")();
-      }
-    } else {
-      if (y <= 1 - x) {
-        clickMoveBtn("up")();
-      } else {
-        clickMoveBtn("right")();
-      }
-    }
-  } else {
-    if (x <= 0.5) {
-      if (y >= 1 - x) {
-        clickMoveBtn("down")();
-      } else {
-        clickMoveBtn("left")();
-      }
-    } else {
-      if (y >= x) {
-        clickMoveBtn("down")();
-      } else {
-        clickMoveBtn("right")();
-      }
-    }
-  }
-});
+if (
+  navigator.userAgent.match(/mobile/i) ||
+  navigator.userAgent.match(/iPad|Android|Touch/i)
+) {
+  moveBtn.addEventListener("touchstart", (event) => {
+    const moveBtnRect = moveBtn.getBoundingClientRect();
+    const x = (event.touches[0].clientX - moveBtnRect.left)/ moveBtn.offsetWidth;
+    const y = (event.touches[0].clientY - moveBtnRect.top)/ moveBtn.offsetHeight;
+    executeClickMoveBtn(x,y)
+  });
+} else {
+  moveBtn.addEventListener("click", (event) => {
+    const x = event.offsetX / moveBtn.offsetWidth;
+    const y = event.offsetY / moveBtn.offsetHeight;
+    executeClickMoveBtn(x,y)
+  });
+}
 window.addEventListener("keydown", (event: KeyboardEvent) => {
   const key = event.key;
   switch (key) {
